@@ -1,7 +1,9 @@
 import { Transform } from "stream";
 
-export const encode = new Transform();
-encode._transform = function (data: any, enc: any, cb: any) {
-  // TODO: replace by proper crypto
-  cb(null, data.toString().toUpperCase());
-};
+class Encoder extends Transform {
+  _transform(chunk: any, encoding: BufferEncoding, callback: TransformCallback): void {
+    callback(null, chunk.toString().toUpperCase());
+  }
+}
+
+export const encode = new Encoder();
