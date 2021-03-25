@@ -19,7 +19,7 @@ $ npm install -g git-marauder
 $ git-marauder COMMAND
 running command...
 $ git-marauder (-v|--version|version)
-git-marauder/0.0.0 darwin-x64 node-v14.15.5
+git-marauder/1.0.0 darwin-x64 node-v14.15.5
 $ git-marauder --help [COMMAND]
 USAGE
   $ git-marauder COMMAND
@@ -28,16 +28,16 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`git-marauder hello [FILE]`](#git-marauder-hello-file)
+* [`git-marauder clean [FILE]`](#git-marauder-clean-file)
 * [`git-marauder help [COMMAND]`](#git-marauder-help-command)
 
-## `git-marauder hello [FILE]`
+## `git-marauder clean [FILE]`
 
 describe the command here
 
 ```
 USAGE
-  $ git-marauder hello [FILE]
+  $ git-marauder clean [FILE]
 
 OPTIONS
   -f, --force
@@ -45,11 +45,11 @@ OPTIONS
   -n, --name=name  name to print
 
 EXAMPLE
-  $ git-marauder hello
-  hello world from ./src/hello.ts!
+  $ git-marauder clean
+  clean world from ./src/clean.ts!
 ```
 
-_See code: [lib/commands/hello.js](https://github.com/tpucci/git-marauder/blob/v0.0.0/lib/commands/hello.js)_
+_See code: [lib/commands/clean.js](https://github.com/bamlab/git-marauder/blob/v1.0.0/lib/commands/clean.js)_
 
 ## `git-marauder help [COMMAND]`
 
