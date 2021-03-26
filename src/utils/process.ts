@@ -1,4 +1,5 @@
 import findProcess from "find-process";
+import { ArrayElement, UnwrapPromise } from "../types/unwrap";
 
 type Process = ArrayElement<UnwrapPromise<ReturnType<typeof findProcess>>>;
 
@@ -16,7 +17,7 @@ export class ProcessUtils {
     const hasGitInParentProcesses = parentProcesses.find(isProcessGit);
 
     if (!hasGitInParentProcesses) {
-      const parentProcessesNames = parentProcesses.map((p) => p.name).join(", ");
+      const parentProcessesNames = parentProcesses.map(p => p.name).join(", ");
       return [false, `One of the parent processes should be "git", found ${parentProcessesNames}`];
     }
 

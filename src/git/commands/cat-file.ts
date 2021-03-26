@@ -1,4 +1,4 @@
-import { GitCommand } from "../gitCommand";
+import { GitCommand } from "../git-command";
 
 export class CatFileGitCommand extends GitCommand {
   constructor(kind: "blob" | "tree", hash: string) {

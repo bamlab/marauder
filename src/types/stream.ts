@@ -1,1 +1,1 @@
-type TransformCallback = (error?: Error | null, data?: any) => void;
+export type TransformCallback = (error?: Error | null, data?: any) => void;

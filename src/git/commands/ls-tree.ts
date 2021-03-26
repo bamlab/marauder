@@ -1,4 +1,4 @@
-import { GitCommand } from "../gitCommand";
+import { GitCommand } from "../git-command";
 
 export class LsTreeGitCommand extends GitCommand {
   constructor(branch: string, path: string) {
@@ -12,7 +12,7 @@ export class LsTreeGitCommand extends GitCommand {
     if (output.length <= 1) {
       throw new Error(`Blob not found for file "${this.args[1]}" in branch "${this.args[0]}"`);
     }
-    const [perm, kind, hash, path, _] = output;
+    const [perm, kind, hash, path] = output;
     if (kind !== "blob" && kind !== "tree") {
       throw new Error(`Unknown kind "${kind}", expected blob or tree`);
     }

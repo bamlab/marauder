@@ -3,8 +3,6 @@ export abstract class GitCommand {
 
   protected args: string[] = [];
 
-  constructor() {}
-
   toArgs() {
     return [this.name, ...this.args];
   }

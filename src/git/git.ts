@@ -1,19 +1,21 @@
 import { BranchGitCommand } from "./commands/branch";
-import { CatFileGitCommand } from "./commands/catFile";
-import { LsTreeGitCommand } from "./commands/lsTree";
-import { GitCommand } from "./gitCommand";
-import { ChildProcessWithoutNullStreams, GitWorker } from "./gitWorker";
+import { CatFileGitCommand } from "./commands/cat-file";
+import { LsTreeGitCommand } from "./commands/ls-tree";
+import { GitCommand } from "./git-command";
+import { ChildProcessWithoutNullStreams, GitWorker } from "./git-worker";
 
 export class Git {
   private static async accumulateData(stream: ChildProcessWithoutNullStreams): Promise<string[]> {
     let data = "";
-    stream.stdout?.on("data", (additionalData) => (data += additionalData));
+    stream.stdout?.on("data", additionalData => {
+      data += additionalData;
+    });
     return new Promise((resolve, reject) => {
       stream.stdout?.on("close", () => {
         const lineData = data.split(/[ \t\n]/);
         resolve(lineData);
       });
-      stream.stdout?.on("error", (err) => {
+      stream.stdout?.on("error", err => {
         reject(err);
       });
     });

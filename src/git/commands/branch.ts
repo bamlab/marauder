@@ -1,11 +1,7 @@
-import { GitCommand } from "../gitCommand";
+import { GitCommand } from "../git-command";
 import { chunk } from "lodash";
 
 export class BranchGitCommand extends GitCommand {
-  constructor() {
-    super();
-  }
-
   name = "branch";
 
   parseOutput(output: string[]): { branches: { current: boolean; name: string }[] } {

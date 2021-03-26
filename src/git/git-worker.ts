@@ -1,11 +1,15 @@
 import cp from "child_process";
 
-import { GitCommand } from "./gitCommand";
+import { GitCommand } from "./git-command";
 
 export type ChildProcessWithoutNullStreams = ReturnType<typeof cp.spawn>;
 
 export class GitWorker {
-  constructor(private readonly command: GitCommand) {}
+  private readonly command: GitCommand;
+
+  constructor(command: GitCommand) {
+    this.command = command;
+  }
 
   run() {
     return cp.spawn("git", this.command.toArgs());
