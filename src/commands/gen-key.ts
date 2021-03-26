@@ -1,5 +1,4 @@
 import { Command } from "@oclif/command";
-import { CryptographyKey } from "sodium-plus";
 
 import { ConfigService } from "../services/config";
 import { CryptoService } from "../services/crypto";
@@ -24,27 +23,27 @@ todo`,
     }
 
     // ---- Repository flow ------
-    let key = await CryptoService.generateRepositorySecretKey();
+    const key = await CryptoService.generateRepositorySecretKey();
     // console.log(key);
-    // let key = "HzW0GwUIRekbiPUZiK2Auzo+QpRXL2aDKbUKIuztk3w=";
-    let [nonce, ciphertext] = await CryptoService.cipherSecret(key, "text text text text");
+    // const key = "HzW0GwUIRekbiPUZiK2Auzo+QpRXL2aDKbUKIuztk3w=";
+    const [nonce, ciphertext] = await CryptoService.cipherSecret(key, "text text text text");
     // console.log(ciphertext);
-    let cleartext = await CryptoService.decipherSecret(key, nonce, ciphertext);
+    const _cleartext = await CryptoService.decipherSecret(key, nonce, ciphertext);
     // console.log(cleartext);
 
     // ---- Key exchange ------
     // TODO: is it better to use key exchange, rather that just https://github.com/paragonie/sodium-plus/blob/master/docs/SodiumPlus/sealed-boxes.md
-    let clientKeypair = await CryptoService.generateClientKeypair();
-    let clientPublicKey = await CryptoService.getPublicKey(clientKeypair);
-    let serverKeypair = await CryptoService.generateServerKeypair();
-    let serverPublicKey = await CryptoService.getPublicKey(serverKeypair);
+    const clientKeypair = await CryptoService.generateClientKeypair();
+    const clientPublicKey = await CryptoService.getPublicKey(clientKeypair);
+    const serverKeypair = await CryptoService.generateServerKeypair();
+    const serverPublicKey = await CryptoService.getPublicKey(serverKeypair);
 
     const [_si, serverOutgoingKey] = await CryptoService.getServerExchangeKeypair(serverKeypair, clientPublicKey);
     const [clientIncomingKey, _co] = await CryptoService.getClientExchangeKeypair(clientKeypair, serverPublicKey);
 
     // console.log(serverOutgoingKey, clientIncomingKey);
-    let [xNonce, xCipher] = await CryptoService.cipherSecret(serverOutgoingKey, "text");
-    let xClear = await CryptoService.decipherSecret(clientIncomingKey, xNonce, xCipher);
+    const [xNonce, xCipher] = await CryptoService.cipherSecret(serverOutgoingKey, "text");
+    const xClear = await CryptoService.decipherSecret(clientIncomingKey, xNonce, xCipher);
     console.log(xClear);
   }
 }
