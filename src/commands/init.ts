@@ -3,6 +3,7 @@ import { Command } from "@oclif/command";
 import { ConfigService } from "../services/config";
 
 export default class Spy extends Command {
+  // TODO: improve description
   static description = "Init marauder";
 
   static usage = "init";
@@ -13,17 +14,12 @@ export default class Spy extends Command {
 todo`,
   ];
 
-  static args = [
-    {
-      name: "path",
-      required: true,
-    },
-  ];
-
   async run() {
+    // TODO: check in git repository
     const isMarauderInstalled = await ConfigService.isMarauderInstalled();
     if (!isMarauderInstalled) {
       await ConfigService.installMarauder();
     }
+    // TODO: log next steps
   }
 }
