@@ -57,6 +57,8 @@ USAGE
 
 EXAMPLE
   $ git-marauder init
+
+  todo
 ```
 
 _See code: [src/commands/init.ts](https://github.com/bamlab/git-marauder/blob/v1.0.0/src/commands/init.ts)_

@@ -26,6 +26,7 @@ export class GetConfigGitCommand extends GitCommand {
     super();
     this.args.push(...argsParseSource(source), "--get", key);
   }
+
   name = "config";
 
   parseOutput(output: string[]): { value: string } {
@@ -38,6 +39,7 @@ export class AddConfigGitCommand extends GitCommand {
     super();
     this.args.push(...argsParseSource(source), "--add", key, value);
   }
+
   name = "config";
 
   parseOutput(output: string[]): { value: string } {

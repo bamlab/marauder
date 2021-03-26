@@ -2,7 +2,7 @@ import { GitConfigSource } from "../git/commands/config";
 import { Git } from "../git/git";
 import { LockUtils } from "../utils/lock";
 
-const acquireGitConfigLock = (target: Object, propertyKey: string, descriptor: PropertyDescriptor) => {
+const acquireGitConfigLock = (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
   const originalMethod = descriptor.value;
 
   descriptor.value = async function (...args: Parameters<typeof originalMethod>) {
@@ -20,10 +20,12 @@ export class ConfigService {
     const gitRoot = await Git.showTopLevel();
     return `${gitRoot}/.git/config`;
   }
+
   static async lockLocalGitConfig() {
     const config = await this.getLocalGitConfigPath();
     return LockUtils.lockFile(config);
   }
+
   static async unlockLocalGitConfig() {
     const config = await this.getLocalGitConfigPath();
     return LockUtils.unlockFile(config);

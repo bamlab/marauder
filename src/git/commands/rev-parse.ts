@@ -10,7 +10,7 @@ export class ShowTopLevelGitCommand extends GitCommand {
 
   parseOutput(output: string[]): { path: string } {
     if (output.length <= 1) {
-      throw new Error(`Not in a git directory.`);
+      throw new Error("Not in a git directory.");
     }
     return { path: output[0] };
   }

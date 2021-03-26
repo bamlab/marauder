@@ -1,15 +1,17 @@
 import { Command } from "@oclif/command";
 
-import { Git } from "../git/git";
 import { ConfigService } from "../services/config";
-import { LockUtils } from "../utils/lock";
 
 export default class Spy extends Command {
   static description = "Init marauder";
 
   static usage = "init";
 
-  static examples = [`$ git-marauder init`];
+  static examples = [
+    `$ git-marauder init
+
+todo`,
+  ];
 
   static args = [
     {

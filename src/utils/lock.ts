@@ -1,4 +1,3 @@
-import { flags } from "@oclif/command";
 import { promises as fs, constants } from "fs";
 import { PartialAttemptOptions, retry } from "@lifeomic/attempt";
 
