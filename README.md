@@ -26,9 +26,26 @@ USAGE
 
 # Commands
 <!-- commands -->
+* [`git-marauder gen-key`](#git-marauder-gen-key)
 * [`git-marauder help [COMMAND]`](#git-marauder-help-command)
 * [`git-marauder init`](#git-marauder-init)
 * [`git-marauder spy PATH`](#git-marauder-spy-path)
+
+## `git-marauder gen-key`
+
+Init marauder
+
+```
+USAGE
+  $ git-marauder gen-key
+
+EXAMPLE
+  $ git-marauder gen-key
+
+  todo
+```
+
+_See code: [src/commands/gen-key.ts](https://github.com/bamlab/git-marauder/blob/v1.0.0/src/commands/gen-key.ts)_
 
 ## `git-marauder help [COMMAND]`
 
