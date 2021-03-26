@@ -27,6 +27,7 @@ USAGE
 # Commands
 <!-- commands -->
 * [`git-marauder help [COMMAND]`](#git-marauder-help-command)
+* [`git-marauder init`](#git-marauder-init)
 * [`git-marauder spy PATH`](#git-marauder-spy-path)
 
 ## `git-marauder help [COMMAND]`
@@ -45,6 +46,20 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
+
+## `git-marauder init`
+
+Init marauder
+
+```
+USAGE
+  $ git-marauder init
+
+EXAMPLE
+  $ git-marauder init
+```
+
+_See code: [src/commands/init.ts](https://github.com/bamlab/git-marauder/blob/v1.0.0/src/commands/init.ts)_
 
 ## `git-marauder spy PATH`
 
