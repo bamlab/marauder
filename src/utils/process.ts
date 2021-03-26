@@ -13,12 +13,12 @@ export class ProcessUtils {
 
   static async isLaunchedByGit(): Promise<[boolean, string]> {
     const parentProcesses = await findProcess("pid", process.ppid);
-    const isProcessGit = (process: Process) => process.name === "git";
+    const isProcessGit = (process: Process) => process.name.startsWith("git");
     const hasGitInParentProcesses = parentProcesses.find(isProcessGit);
 
     if (!hasGitInParentProcesses) {
-      const parentProcessesNames = parentProcesses.map(p => p.name).join(", ");
-      return [false, `One of the parent processes should be "git", found ${parentProcessesNames}`];
+      const parentProcessesNames = parentProcesses.map((p) => p.name).join(", ");
+      return [false, `One of the parent processes should start with "git", found "${parentProcessesNames}")`];
     }
 
     return [true, ""];
