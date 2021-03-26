@@ -8,6 +8,7 @@
   },
   "bugs": "https://github.com/bamlab/git-marauder/issues",
   "dependencies": {
+    "@lifeomic/attempt": "^3.0.0",
     "@oclif/command": "^1.8.0",
     "@oclif/config": "^1.17.0",
     "@oclif/plugin-help": "^3.2.2",
