@@ -26,8 +26,8 @@ fe0ea581011cacc1650f77f5339f678b
 
   async run() {
     const { args } = this.parse(Spy);
-    const { branches } = await Git.branch();
-    const activeBranch = branches.find(b => b.current)?.name as string;
+    const { branches } = await Git.getCurrentBranches();
+    const activeBranch = branches.find((b) => b.current)?.name as string;
     const { hash } = await Git.lsTree(activeBranch, args.path);
     const { data } = await Git.catFile("blob", hash);
     this.log(data);

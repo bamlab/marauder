@@ -1,4 +1,4 @@
-import { BranchGitCommand } from "./commands/branch";
+import { GetCurrentBranchesGitCommand } from "./commands/branch";
 import { CatFileGitCommand } from "./commands/cat-file";
 import { LsTreeGitCommand } from "./commands/ls-tree";
 import { GitCommand } from "./git-command";
@@ -7,7 +7,7 @@ import { ChildProcessWithoutNullStreams, GitWorker } from "./git-worker";
 export class Git {
   private static async accumulateData(stream: ChildProcessWithoutNullStreams): Promise<string[]> {
     let data = "";
-    stream.stdout?.on("data", additionalData => {
+    stream.stdout?.on("data", (additionalData) => {
       data += additionalData;
     });
     return new Promise((resolve, reject) => {
@@ -15,7 +15,7 @@ export class Git {
         const lineData = data.split(/[ \t\n]/);
         resolve(lineData);
       });
-      stream.stdout?.on("error", err => {
+      stream.stdout?.on("error", (err) => {
         reject(err);
       });
     });
@@ -28,8 +28,8 @@ export class Git {
     return command.parseOutput(data) as ReturnType<T["parseOutput"]>;
   }
 
-  public static async branch() {
-    const command = new BranchGitCommand();
+  public static async getCurrentBranches() {
+    const command = new GetCurrentBranchesGitCommand();
     return Git.execute(command);
   }
 

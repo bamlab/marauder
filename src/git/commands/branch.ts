@@ -1,7 +1,7 @@
 import { GitCommand } from "../git-command";
 import { chunk } from "lodash";
 
-export class BranchGitCommand extends GitCommand {
+export class GetCurrentBranchesGitCommand extends GitCommand {
   name = "branch";
 
   parseOutput(output: string[]): { branches: { current: boolean; name: string }[] } {
