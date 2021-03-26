@@ -1,5 +1,6 @@
 export abstract class GitCommand {
-  protected name: string = "";
+  protected name = "";
+
   protected args: string[] = [];
 
   constructor() {}

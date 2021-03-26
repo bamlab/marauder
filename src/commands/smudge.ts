@@ -5,6 +5,7 @@ import { ProcessUtils } from "../utils/process";
 
 export default class Clean extends Command {
   static hidden = true;
+
   static description = "(Git command) When fetching and pulling, decode files.";
 
   async run() {

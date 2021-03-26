@@ -7,6 +7,7 @@ import { ProcessUtils } from "../utils/process";
 
 export default class Diff extends Command {
   static hidden = true;
+
   static description = "(Git command) When diffing, encode files.";
 
   static args = [

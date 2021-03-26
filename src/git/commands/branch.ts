@@ -10,7 +10,7 @@ export class BranchGitCommand extends GitCommand {
 
   parseOutput(output: string[]): { branches: { current: boolean; name: string }[] } {
     const branches = chunk(output, 3);
-    const parsedBranch = branches.map(([star, name, _]) => ({ current: "*" === star, name }));
+    const parsedBranch = branches.map(([star, name, _]) => ({ current: star === "*", name }));
     return { branches: parsedBranch };
   }
 }
