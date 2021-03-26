@@ -1,6 +1,8 @@
 import { GetCurrentBranchesGitCommand } from "./commands/branch";
 import { CatFileGitCommand } from "./commands/cat-file";
+import { GetConfigGitCommand, GitConfigSource, AddConfigGitCommand } from "./commands/config";
 import { LsTreeGitCommand } from "./commands/ls-tree";
+import { ShowTopLevelGitCommand } from "./commands/rev-parse";
 import { GitCommand } from "./git-command";
 import { ChildProcessWithoutNullStreams, GitWorker } from "./git-worker";
 
@@ -41,5 +43,22 @@ export class Git {
   public static async catFile(kind: "blob", hash: string) {
     const command = new CatFileGitCommand(kind, hash);
     return Git.execute(command);
+  }
+
+  public static async showTopLevel() {
+    const command = new ShowTopLevelGitCommand();
+    const result = await Git.execute(command);
+    return result.path;
+  }
+
+  public static async getConfig(key: string, source: GitConfigSource) {
+    const command = new GetConfigGitCommand(key, source);
+    const result = await Git.execute(command);
+    return result.value;
+  }
+
+  public static async addConfig(key: string, value: string, source: GitConfigSource) {
+    const command = new AddConfigGitCommand(key, value, source);
+    await Git.execute(command);
   }
 }
