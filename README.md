@@ -13,19 +13,17 @@ Encrypt secrets
 * [Commands](#commands)
 <!-- tocstop -->
 # Usage
-<!-- usage -->
+
 ```sh-session
 $ npm install -g git-marauder
 $ git-marauder COMMAND
 running command...
-$ git-marauder (-v|--version|version)
-git-marauder/1.0.0 linux-x64 node-v14.16.0
 $ git-marauder --help [COMMAND]
 USAGE
   $ git-marauder COMMAND
 ...
 ```
-<!-- usagestop -->
+
 # Commands
 <!-- commands -->
 * [`git-marauder help [COMMAND]`](#git-marauder-help-command)
@@ -55,6 +53,15 @@ Show the real content of a file, as git store it, before sending it to the serve
 ```
 USAGE
   $ git-marauder spy PATH
+
+EXAMPLE
+  $ git-marauder spy e.txt
+  ¯\_ʻmarauderʻ_/¯
+  8cf027a41e74a383046da101c4379a16
+  faadd220be715fb582776bde776dcd2f
+  5bd00e63c3413b52896431b84e84c769
+  fe0ea581011cacc1650f77f5339f678b
+  90035d29e0c8b099cacb7916fb3863da
 ```
 
 _See code: [src/commands/spy.ts](https://github.com/bamlab/git-marauder/blob/v1.0.0/src/commands/spy.ts)_

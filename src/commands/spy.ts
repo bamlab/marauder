@@ -4,6 +4,17 @@ import { Git } from "../git/git";
 
 export default class Spy extends Command {
   static description = "Show the real content of a file, as git store it, before sending it to the server.";
+  static usage = "spy PATH";
+
+  static examples = [
+    `$ git-marauder spy e.txt
+¯\\_ʻmarauderʻ_/¯
+8cf027a41e74a383046da101c4379a16
+faadd220be715fb582776bde776dcd2f
+5bd00e63c3413b52896431b84e84c769
+fe0ea581011cacc1650f77f5339f678b
+90035d29e0c8b099cacb7916fb3863da`,
+  ];
 
   static args = [
     {
