@@ -13,7 +13,9 @@
     "@oclif/config": "^1.17.0",
     "@oclif/plugin-help": "^3.2.2",
     "find-process": "^1.4.4",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "sodium-native": "^3.2.1",
+    "sodium-plus": "^0.9.0"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1.26.0",
