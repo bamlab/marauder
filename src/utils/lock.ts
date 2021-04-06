@@ -2,7 +2,7 @@ import { promises as fs, constants } from "fs";
 import { PartialAttemptOptions, retry } from "@lifeomic/attempt";
 
 export class LockUtils {
-  static async lockFile(path: string) {
+  static async lockFile(path: string): Promise<void> {
     const lockPath = `${path}.lock`;
 
     // Create if not exists, fail if already exists and read/write.
@@ -15,7 +15,7 @@ export class LockUtils {
     await handle.close();
   }
 
-  static async unlockFile(path: string) {
+  static async unlockFile(path: string): Promise<void> {
     const lockPath = `${path}.lock`;
     await fs.unlink(lockPath).catch(() => LockUtils.unlockFile(path));
   }

@@ -26,11 +26,14 @@ export class CryptoService {
     return key.getBuffer().toString("base64");
   }
 
-  static async getServerExchangeKeypair(serverStoredKeypair: string, clientStoredPublicKey: string) {
+  static async getServerExchangeKeypair(
+    serverStoredKeypair: string,
+    clientStoredPublicKey: string
+  ): Promise<[incoming: string, outgoing: string]> {
     const sodium = await SodiumPlus.auto();
-    const serverKeyPair = CryptographyKey.from(serverStoredKeypair, "base64");
-    const serverSecretKey = await sodium.crypto_box_secretkey(serverKeyPair);
-    const serverPublicKey = await sodium.crypto_box_publickey(serverKeyPair);
+    const serverKeypair = CryptographyKey.from(serverStoredKeypair, "base64");
+    const serverSecretKey = await sodium.crypto_box_secretkey(serverKeypair);
+    const serverPublicKey = await sodium.crypto_box_publickey(serverKeypair);
     const clientPublicKey = X25519PublicKey.from(clientStoredPublicKey, "base64");
     const [serverIncomingKey, serverOutgoingKey] = await sodium.crypto_kx_server_session_keys(
       serverPublicKey,
@@ -40,7 +43,10 @@ export class CryptoService {
     return [serverIncomingKey.getBuffer().toString("base64"), serverOutgoingKey.getBuffer().toString("base64")];
   }
 
-  static async getClientExchangeKeypair(clientStoredKeypair: string, serverStoredPublicKey: string) {
+  static async getClientExchangeKeypair(
+    clientStoredKeypair: string,
+    serverStoredPublicKey: string
+  ): Promise<[incoming: string, outgoing: string]> {
     const sodium = await SodiumPlus.auto();
     const clientKeyPair = CryptographyKey.from(clientStoredKeypair, "base64");
     const clientSecretKey = await sodium.crypto_box_secretkey(clientKeyPair);

@@ -16,29 +16,29 @@ const acquireGitConfigLock = (target: any, propertyKey: string, descriptor: Prop
 };
 
 export class ConfigService {
-  static async getLocalGitConfigPath() {
+  static async getLocalGitConfigPath(): Promise<string> {
     const gitRoot = await Git.showTopLevel();
     return `${gitRoot}/.git/config`;
   }
 
-  static async lockLocalGitConfig() {
+  static async lockLocalGitConfig(): Promise<void> {
     const config = await this.getLocalGitConfigPath();
     return LockUtils.lockFile(config);
   }
 
-  static async unlockLocalGitConfig() {
+  static async unlockLocalGitConfig(): Promise<void> {
     const config = await this.getLocalGitConfigPath();
     return LockUtils.unlockFile(config);
   }
 
   @acquireGitConfigLock
-  static async isMarauderInstalled() {
+  static async isMarauderInstalled(): Promise<boolean> {
     const configSource: GitConfigSource = "local";
     const value = await Git.getConfig("marauder.m-a-r-a-u-d-e-r", configSource);
     return value === "marauder";
   }
 
-  static async installMarauder() {
+  static async installMarauder(): Promise<void> {
     const configSource: GitConfigSource = "local";
     await Git.addConfig("marauder.m-a-r-a-u-d-e-r", "marauder", configSource);
     await Git.addConfig("filter.marauder.clean", "git-marauder clean", configSource);
