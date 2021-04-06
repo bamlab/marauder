@@ -48,4 +48,15 @@ export class ConfigService {
     await Git.addConfig("diff.marauder.cachetextconv", "true", configSource);
     await Git.addConfig("diff.marauder.binary", "true", configSource);
   }
+
+  static async storeSecretKey(key: string): Promise<void> {
+    const configSource: GitConfigSource = "local";
+    await Git.setConfig("marauder.secretkey", key, configSource);
+  }
+
+  static async getSecretKey(): Promise<string> {
+    const configSource: GitConfigSource = "local";
+    const value = await Git.getConfig("marauder.secretkey", configSource);
+    return value;
+  }
 }

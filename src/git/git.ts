@@ -1,6 +1,6 @@
 import { GetCurrentBranchesGitCommand } from "./commands/branch";
 import { CatFileGitCommand } from "./commands/cat-file";
-import { GetConfigGitCommand, GitConfigSource, AddConfigGitCommand } from "./commands/config";
+import { GetConfigGitCommand, GitConfigSource, AddConfigGitCommand, SetConfigGitCommand } from "./commands/config";
 import { LsTreeGitCommand } from "./commands/ls-tree";
 import { ShowTopLevelGitCommand } from "./commands/rev-parse";
 import { GitCommand } from "./git-command";
@@ -59,6 +59,11 @@ export class Git {
 
   public static async addConfig(key: string, value: string, source: GitConfigSource) {
     const command = new AddConfigGitCommand(key, value, source);
+    await Git.execute(command);
+  }
+
+  public static async setConfig(key: string, value: string, source: GitConfigSource) {
+    const command = new SetConfigGitCommand(key, value, source);
     await Git.execute(command);
   }
 }

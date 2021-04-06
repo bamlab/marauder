@@ -46,3 +46,16 @@ export class AddConfigGitCommand extends GitCommand {
     return { value: output[0] };
   }
 }
+
+export class SetConfigGitCommand extends GitCommand {
+  constructor(key: string, value: string, source?: GitConfigSource) {
+    super();
+    this.args.push(...argsParseSource(source), key, value);
+  }
+
+  name = "config";
+
+  parseOutput(output: string[]): { value: string } {
+    return { value: output[0] };
+  }
+}
