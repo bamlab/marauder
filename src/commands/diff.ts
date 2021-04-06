@@ -5,6 +5,7 @@ import * as fs from "fs";
 import { decode } from "../transforms/decode";
 import { ProcessUtils } from "../utils/process";
 
+// TODO: rename to GitDiffTextConv
 export default class Diff extends Command {
   static hidden = true;
 

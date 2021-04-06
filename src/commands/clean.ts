@@ -3,6 +3,7 @@ import { Command } from "@oclif/command";
 import { encode } from "../transforms/encode";
 import { ProcessUtils } from "../utils/process";
 
+// TODO: rename to GitFilterClean
 export default class Clean extends Command {
   static hidden = true;
 

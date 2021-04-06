@@ -30,6 +30,7 @@ fe0ea581011cacc1650f77f5339f678b
     const { branches } = await Git.getCurrentBranches();
     const activeBranch = branches.find((b) => b.current)?.name as string;
     const { hash } = await Git.lsTree(activeBranch, args.path);
+    // TODO: verify that kind is "blob". Otherwise this won't work if kind is "tree". Of course.
     const { data } = await Git.catFile("blob", hash);
     this.log(data);
   }
