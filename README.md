@@ -26,10 +26,34 @@ USAGE
 
 # Commands
 <!-- commands -->
+* [`marauder autocomplete [SHELL]`](#marauder-autocomplete-shell)
 * [`marauder generate-key`](#marauder-generate-key)
 * [`marauder help [COMMAND]`](#marauder-help-command)
 * [`marauder init`](#marauder-init)
 * [`marauder spy PATH`](#marauder-spy-path)
+
+## `marauder autocomplete [SHELL]`
+
+display autocomplete installation instructions
+
+```
+USAGE
+  $ marauder autocomplete [SHELL]
+
+ARGUMENTS
+  SHELL  shell type
+
+OPTIONS
+  -r, --refresh-cache  Refresh cache (ignores displaying instructions)
+
+EXAMPLES
+  $ marauder autocomplete
+  $ marauder autocomplete bash
+  $ marauder autocomplete zsh
+  $ marauder autocomplete --refresh-cache
+```
+
+_See code: [@oclif/plugin-autocomplete](https://github.com/oclif/plugin-autocomplete/blob/v0.3.0/src/commands/autocomplete/index.ts)_
 
 ## `marauder generate-key`
 
