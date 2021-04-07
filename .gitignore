@@ -8,4 +8,5 @@
 node_modules
 
 # outputs
+marauder-*.tgz
 git-marauder-*.tgz

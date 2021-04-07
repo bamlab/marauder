@@ -1,12 +1,12 @@
 {
-  "name": "git-marauder",
+  "name": "marauder",
   "description": "Encrypt secrets",
   "version": "1.0.0",
   "author": "Thomas Pucci and Tycho Tatitscheff",
   "bin": {
-    "git-marauder": "./bin/run"
+    "marauder": "./bin/run"
   },
-  "bugs": "https://github.com/bamlab/git-marauder/issues",
+  "bugs": "https://github.com/bamlab/marauder/issues",
   "dependencies": {
     "@lifeomic/attempt": "^3.0.0",
     "@oclif/command": "^1.8.0",
@@ -37,7 +37,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/bamlab/git-marauder",
+  "homepage": "https://github.com/bamlab/marauder",
   "keywords": [
     "oclif"
   ],
@@ -45,12 +45,12 @@
   "main": "lib/index.js",
   "oclif": {
     "commands": "./lib/commands",
-    "bin": "git-marauder",
+    "bin": "marauder",
     "plugins": [
       "@oclif/plugin-help"
     ]
   },
-  "repository": "bamlab/git-marauder",
+  "repository": "bamlab/marauder",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint . --ext .ts --config .eslintrc",

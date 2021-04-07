@@ -9,7 +9,7 @@ export default class Spy extends Command {
   static usage = "init";
 
   static examples = [
-    `$ git-marauder init
+    `$ marauder init
 
 todo`,
   ];

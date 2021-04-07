@@ -10,7 +10,7 @@ export default class GenKey extends Command {
   static usage = "gen-key";
 
   static examples = [
-    `$ git-marauder gen-key
+    `$ marauder gen-key
 
 todo`,
   ];

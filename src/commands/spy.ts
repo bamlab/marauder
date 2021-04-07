@@ -8,7 +8,7 @@ export default class Spy extends Command {
   static usage = "spy PATH";
 
   static examples = [
-    `$ git-marauder spy e.txt
+    `$ marauder spy e.txt
 
 ~(^marauder^)~
 8cf027a41e74a383046da101c4379a16

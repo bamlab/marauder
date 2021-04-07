@@ -41,10 +41,10 @@ export class ConfigService {
   static async installMarauder(): Promise<void> {
     const configSource: GitConfigSource = "local";
     await Git.addConfig("marauder.m-a-r-a-u-d-e-r", "marauder", configSource);
-    await Git.addConfig("filter.marauder.clean", "git-marauder clean", configSource);
-    await Git.addConfig("filter.marauder.smudge", "git-marauder smudge", configSource);
+    await Git.addConfig("filter.marauder.clean", "marauder clean", configSource);
+    await Git.addConfig("filter.marauder.smudge", "marauder smudge", configSource);
     await Git.addConfig("filter.marauder.required", "true", configSource);
-    await Git.addConfig("diff.marauder.textconv", "git-marauder diff", configSource);
+    await Git.addConfig("diff.marauder.textconv", "marauder diff", configSource);
     await Git.addConfig("diff.marauder.cachetextconv", "true", configSource);
     await Git.addConfig("diff.marauder.binary", "true", configSource);
   }
