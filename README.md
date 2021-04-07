@@ -1,12 +1,12 @@
-marauder
+Marauder
 ============
 
 Encrypt secrets
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/marauder.svg)](https://npmjs.org/package/marauder)
-[![Downloads/week](https://img.shields.io/npm/dw/marauder.svg)](https://npmjs.org/package/marauder)
-[![License](https://img.shields.io/npm/l/marauder.svg)](https://github.com/tpucci/marauder/blob/master/package.json)
+[![Version](https://img.shields.io/npm/v/@bam.tech/marauder.svg)](https://npmjs.org/package/@bam.tech/marauder)
+[![Downloads/week](https://img.shields.io/npm/dw/@bam.tech/marauder.svg)](https://npmjs.org/package/@bam.tech/marauder)
+[![License](https://img.shields.io/npm/l/@bam.tech/marauder.svg)](https://github.com/bamlab/marauder/blob/master/package.json)
 
 <!-- toc -->
 * [Usage](#usage)
@@ -26,10 +26,13 @@ USAGE
 
 # Commands
 <!-- commands -->
-* [`marauder gen-key`](#marauder-gen-key)
-* [`marauder help [COMMAND]`](#marauder-help-command)
-* [`marauder init`](#marauder-init)
-* [`marauder spy PATH`](#marauder-spy-path)
+- [Marauder](#marauder)
+- [Usage](#usage)
+- [Commands](#commands)
+  - [`marauder gen-key`](#marauder-gen-key)
+  - [`marauder help [COMMAND]`](#marauder-help-command)
+  - [`marauder init`](#marauder-init)
+  - [`marauder spy PATH`](#marauder-spy-path)
 
 ## `marauder gen-key`
 
