@@ -17,6 +17,7 @@ export default class GitFilterClean extends Command {
 
   static description = "(Git command) When staging and committing, encode files.";
 
+  // TODO: add debug https://oclif.io/docs/debugging
   async run(): Promise<void> {
     // TODO: use monadic result struct
     const [isNotTTY, ttyError] = await ProcessUtils.isNotTTY();

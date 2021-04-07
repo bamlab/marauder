@@ -23,6 +23,7 @@ export class Git {
     });
   }
 
+  // TODO: add debug https://oclif.io/docs/debugging
   private static async execute<T extends GitCommand>(command: T): Promise<ReturnType<T["parseOutput"]>> {
     const worker = new GitWorker(command);
     const gitStream = worker.run();

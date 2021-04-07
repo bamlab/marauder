@@ -31,6 +31,7 @@ export default class GenerateKey extends Command {
 todo`,
   ];
 
+  // TODO: add debug https://oclif.io/docs/debugging
   async run(): Promise<void> {
     // TODO: Check if environnement is terminal interactive
 

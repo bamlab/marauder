@@ -26,6 +26,7 @@ export default class GitDiffTextconv extends Command {
     },
   ];
 
+  // TODO: add debug https://oclif.io/docs/debugging
   async run(): Promise<void> {
     // TODO: use monadic result struct
     const [isLaunchedByGit, processError] = await ProcessUtils.isLaunchedByGit();

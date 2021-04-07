@@ -18,6 +18,7 @@ export default class GitFilterSmudge extends Command {
   // TODO: clean up description
   static description = "(Git command) When fetching and pulling, decode files.";
 
+  // TODO: add debug https://oclif.io/docs/debugging
   async run(): Promise<void> {
     // TODO: use monadic result struct
     const [isNotTTY, ttyError] = await ProcessUtils.isLaunchedByGit();

@@ -1,6 +1,7 @@
 import { promises as fs, constants } from "fs";
 import { PartialAttemptOptions, retry } from "@lifeomic/attempt";
 
+// TODO: add debug https://oclif.io/docs/debugging
 export class LockUtils {
   static async lockFile(path: string): Promise<void> {
     const lockPath = `${path}.lock`;

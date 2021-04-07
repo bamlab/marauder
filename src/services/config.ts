@@ -15,6 +15,7 @@ const acquireGitConfigLock = (target: any, propertyKey: string, descriptor: Prop
   return descriptor;
 };
 
+// TODO: add debug https://oclif.io/docs/debugging
 export class ConfigService {
   static async getLocalGitConfigPath(): Promise<string> {
     const gitRoot = await Git.showTopLevel();

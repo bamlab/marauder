@@ -2,6 +2,7 @@ import { Command } from "@oclif/command";
 
 import { ConfigService } from "../services/config";
 
+// TODO: add debug https://oclif.io/docs/debugging
 export default class Spy extends Command {
   // TODO: improve description
   static description = "Init marauder";

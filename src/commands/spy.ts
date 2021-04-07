@@ -2,6 +2,7 @@ import { Command } from "@oclif/command";
 
 import { Git } from "../git/git";
 
+// TODO: add debug https://oclif.io/docs/debugging
 export default class Spy extends Command {
   static description = "Show the real content of a file, as git store it, before sending it to the server.";
 

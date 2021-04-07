@@ -1,5 +1,6 @@
 import { CryptographyKey, SodiumPlus, X25519PublicKey } from "sodium-plus";
 
+// TODO: add debug https://oclif.io/docs/debugging
 export class CryptoService {
   static async generateRepositorySecretKey(): Promise<string> {
     const sodium = await SodiumPlus.auto();

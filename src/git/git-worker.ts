@@ -11,6 +11,7 @@ export class GitWorker {
     this.command = command;
   }
 
+  // TODO: add debug https://oclif.io/docs/debugging
   run() {
     return cp.spawn("git", this.command.toArgs());
   }
