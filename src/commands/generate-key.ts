@@ -21,7 +21,7 @@ import { CryptoService } from "../services/crypto";
  * @extends {Command}
  */
 export default class GenerateKey extends Command {
-  static description = "Init marauder";
+  static description = "Generate Secret key for marauder";
 
   static usage = "generate-key";
 
