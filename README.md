@@ -26,29 +26,26 @@ USAGE
 
 # Commands
 <!-- commands -->
-- [Marauder](#marauder)
-- [Usage](#usage)
-- [Commands](#commands)
-  - [`marauder gen-key`](#marauder-gen-key)
-  - [`marauder help [COMMAND]`](#marauder-help-command)
-  - [`marauder init`](#marauder-init)
-  - [`marauder spy PATH`](#marauder-spy-path)
+* [`marauder generate-key`](#marauder-generate-key)
+* [`marauder help [COMMAND]`](#marauder-help-command)
+* [`marauder init`](#marauder-init)
+* [`marauder spy PATH`](#marauder-spy-path)
 
-## `marauder gen-key`
+## `marauder generate-key`
 
 Init marauder
 
 ```
 USAGE
-  $ marauder gen-key
+  $ marauder generate-key
 
 EXAMPLE
-  $ marauder gen-key
+  $ marauder generate-key
 
   todo
 ```
 
-_See code: [src/commands/gen-key.ts](https://github.com/bamlab/marauder/blob/v1.0.0/src/commands/gen-key.ts)_
+_See code: [src/commands/generate-key.ts](https://github.com/bamlab/marauder/blob/v1.0.0/src/commands/generate-key.ts)_
 
 ## `marauder help [COMMAND]`
 
