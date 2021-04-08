@@ -9,7 +9,7 @@ import { Command } from "@oclif/command";
  * When viewing file, decode the blob them before writing them in directory.
  *
  * @export
- * @class GitFilterClean
+ * @class GitProcess
  * @deprecate work in progress
  * @extends {Command}
  */
