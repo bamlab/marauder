@@ -1,10 +1,13 @@
 import { Transform } from "stream";
+import { CryptoService } from "../services/crypto";
 import { TransformCallback } from "../types/stream";
 
-class Decoder extends Transform {
-  _transform(chunk: any, encoding: BufferEncoding, callback: TransformCallback): void {
-    callback(null, chunk.toString().toLowerCase());
+export class Decoder extends Transform {
+  constructor(private readonly secretKey: string) {
+    super();
+  }
+
+  _transform(chunk: Buffer, encoding: BufferEncoding, callback: TransformCallback): void {
+    CryptoService.decipherSecret(this.secretKey, chunk.toString()).then((data) => callback(null, data));
   }
 }
-
-export const decode = new Decoder();

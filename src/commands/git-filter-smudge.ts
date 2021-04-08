@@ -1,6 +1,7 @@
 import { Command } from "@oclif/command";
 
-import { decode } from "../transforms/decode";
+import { ConfigService } from "../services/config";
+import { Decoder } from "../transforms/decode";
 import { ProcessUtils } from "../utils/process";
 
 /**
@@ -30,7 +31,11 @@ export default class GitFilterSmudge extends Command {
     // TODO: create an invariant(condition, error)
     !isLaunchedByGit && this.error(processError);
 
+    const secretKey = await ConfigService.getSecretKey();
+    !secretKey && this.error("Please generate a secretKey");
+
     // TODO: investigate how to display error in git (stderr ?)
+    const decode = new Decoder(secretKey);
     process.stdin.pipe(decode).pipe(process.stdout);
   }
 }

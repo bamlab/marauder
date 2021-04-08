@@ -2,7 +2,8 @@ import { Command } from "@oclif/command";
 
 import * as fs from "fs";
 
-import { decode } from "../transforms/decode";
+import { ConfigService } from "../services/config";
+import { Decoder } from "../transforms/decode";
 import { ProcessUtils } from "../utils/process";
 
 /**
@@ -36,7 +37,11 @@ export default class GitDiffTextconv extends Command {
     // TODO: handle error if path is not passed
     const { args } = this.parse(GitDiffTextconv);
 
+    const secretKey = await ConfigService.getSecretKey();
+    !secretKey && this.error("Please generate a secretKey");
+
     // TODO: investigate how to display error in git (stderr ?)
+    const decode = new Decoder(secretKey);
     fs.createReadStream(args.path).pipe(decode).pipe(process.stdout);
   }
 }

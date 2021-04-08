@@ -1,6 +1,7 @@
 import { Command } from "@oclif/command";
 
-import { encode } from "../transforms/encode";
+import { ConfigService } from "../services/config";
+import { Encoder } from "../transforms/encode";
 import { ProcessUtils } from "../utils/process";
 
 /**
@@ -29,7 +30,11 @@ export default class GitFilterClean extends Command {
     // TODO: create an invariant(condition, error)
     !isLaunchedByGit && this.error(processError);
 
+    const secretKey = await ConfigService.getSecretKey();
+    !secretKey && this.error("Please generate a secretKey");
+
     // TODO: investigate how to display error in git (stderr ?)
+    const encode = new Encoder(secretKey);
     process.stdin.pipe(encode).pipe(process.stdout);
   }
 }
