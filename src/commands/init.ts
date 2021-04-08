@@ -1,4 +1,4 @@
-import { Command } from "@oclif/command";
+import { Command, flags } from "@oclif/command";
 
 import { ConfigService } from "../services/config";
 
@@ -9,6 +9,16 @@ export default class Init extends Command {
   static description = "Init marauder";
 
   static usage = "init";
+
+  static flags = {
+    "with-secret-key": flags.string({
+      char: "s",
+      description: "initialize the repository with a given secret key",
+      multiple: false,
+      env: "MARAUDER_SECRET_KEY",
+      required: false,
+    }),
+  };
 
   // TODO: improve example
   static examples = [
