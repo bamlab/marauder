@@ -2,12 +2,22 @@ import { Command } from "@oclif/command";
 
 import { Git } from "../git/git";
 
-// TODO: document this
+/**
+ * Given a path, show the content as stored by Git
+ *
+ * Git store content in blob.
+ * Those blob are sent to the server.
+ * Thus showing the actual content helps to see if the file is really encrypted.
+ *
+ * @export
+ * @class SpyRaw
+ * @extends {Command}
+ */
 // TODO: add debug https://oclif.io/docs/debugging
-export default class SpyRawFile extends Command {
+export default class SpyRaw extends Command {
   static description = "Show the real content of a file, as git store it, before sending it to the server.";
 
-  static usage = "spy-raw-file PATH";
+  static usage = "spy-raw PATH";
 
   static aliases = ["spy"];
 
@@ -31,7 +41,7 @@ fe0ea581011cacc1650f77f5339f678b
 
   // TODO: handle errrors in the code
   async run(): Promise<void> {
-    const { args } = this.parse(SpyRawFile);
+    const { args } = this.parse(SpyRaw);
     const { branches } = await Git.getCurrentBranches();
     const activeBranch = branches.find((b) => b.current)?.name as string;
     const { hash } = await Git.lsTree(activeBranch, args.path);
