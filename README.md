@@ -30,7 +30,7 @@ USAGE
 * [`marauder generate-key`](#marauder-generate-key)
 * [`marauder help [COMMAND]`](#marauder-help-command)
 * [`marauder init`](#marauder-init)
-* [`marauder spy-raw-file PATH`](#marauder-spy-raw-file-path)
+* [`marauder spy-raw PATH`](#marauder-spy-raw-path)
 
 ## `marauder autocomplete [SHELL]`
 
@@ -96,6 +96,9 @@ Init marauder
 USAGE
   $ marauder init
 
+OPTIONS
+  -s, --with-secret-key=with-secret-key  initialize the repository with a given secret key
+
 EXAMPLES
   $ marauder init
 
@@ -107,13 +110,13 @@ EXAMPLES
 
 _See code: [src/commands/init.ts](https://github.com/bamlab/marauder/blob/v1.0.0/src/commands/init.ts)_
 
-## `marauder spy-raw-file PATH`
+## `marauder spy-raw PATH`
 
 Show the real content of a file, as git store it, before sending it to the server.
 
 ```
 USAGE
-  $ marauder spy-raw-file PATH
+  $ marauder spy-raw PATH
 
 ALIASES
   $ marauder spy
@@ -129,5 +132,5 @@ EXAMPLE
   90035d29e0c8b099cacb7916fb3863da
 ```
 
-_See code: [src/commands/spy-raw-file.ts](https://github.com/bamlab/marauder/blob/v1.0.0/src/commands/spy-raw-file.ts)_
+_See code: [src/commands/spy-raw.ts](https://github.com/bamlab/marauder/blob/v1.0.0/src/commands/spy-raw.ts)_
 <!-- commandsstop -->
