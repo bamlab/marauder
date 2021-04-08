@@ -1,9 +1,11 @@
 import { Command } from "@oclif/command";
 import CliUx from "cli-ux";
+
 import { Git } from "../git/git";
 
 import { ConfigService } from "../services/config";
 import { CryptoService } from "../services/crypto";
+import { ProcessUtils } from "../utils/process";
 
 /**
  * Generate the repository secret
@@ -33,9 +35,12 @@ todo`,
 
   // TODO: add debug https://oclif.io/docs/debugging
   async run(): Promise<void> {
-    // TODO: Check if environnement is terminal interactive
+    const [isTTY, ttyError] = await ProcessUtils.isTTY();
+    // TODO: create an invariant(condition, error)
+    !isTTY && this.error(ttyError);
 
-    // TODO: check we are insides git repository (later determine the backend)
+    const config = await ConfigService.getLocalGitConfigPath();
+    !config && this.error("not in git");
 
     // TODO: if marauder is installed locally, install using "yarn marauder"
     const isMarauderInstalled = await ConfigService.isMarauderInstalled();
@@ -68,7 +73,7 @@ todo`,
     }
     const secretKey = await CryptoService.generateRepositorySecretKey();
     await ConfigService.storeSecretKey(secretKey);
-    // TODO: log if the secret key is successfully generated
+    this.log("Repository secret key successfully created");
   }
 }
 
