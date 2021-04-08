@@ -41,16 +41,19 @@ export class ConfigService {
 
   static async installMarauder(): Promise<void> {
     const configSource: GitConfigSource = "local";
-    await Git.addConfig("marauder.m-a-r-a-u-d-e-r", "marauder", configSource);
-    // TODO: determine if "marauder clean" or "yarn marauder clean" based on how marauder is installed (if local, use local)
-    await Git.addConfig("filter.marauder.clean", "marauder clean", configSource);
-    // TODO: determine if "marauder clean" or "yarn marauder clean" based on how marauder is installed (if local, use local)
-    await Git.addConfig("filter.marauder.smudge", "marauder smudge", configSource);
-    await Git.addConfig("filter.marauder.required", "true", configSource);
-    // TODO: determine if "marauder clean" or "yarn marauder clean" based on how marauder is installed (if local, use local)
-    await Git.addConfig("diff.marauder.textconv", "marauder diff", configSource);
-    await Git.addConfig("diff.marauder.cachetextconv", "true", configSource);
-    await Git.addConfig("diff.marauder.binary", "true", configSource);
+    await Git.setConfig("marauder.m-a-r-a-u-d-e-r", "marauder", configSource);
+    // TODO: determine if "marauder git-filter-clean" or "yarn marauder git-filter-clean" based on how marauder is installed (if local, use local)
+    await Git.setConfig("filter.marauder.clean", "marauder git-filter-clean", configSource);
+    // TODO: determine if "marauder git-filter-smudge" or "yarn marauder git-filter-smudge" based on how marauder is installed (if local, use local)
+    await Git.setConfig("filter.marauder.smudge", "marauder git-filter-smudge", configSource);
+    // TODO: enable git-process for performance once implemented
+    // TODO: determine if "marauder git-process" or "yarn marauder git-process" based on how marauder is installed (if local, use local)
+    // await Git.setConfig("filter.marauder.process", "marauder git-process", configSource);
+    await Git.setConfig("filter.marauder.required", "true", configSource);
+    // TODO: determine if "marauder git-diff-textconv" or "yarn marauder git-diff-textconv" based on how marauder is installed (if local, use local)
+    await Git.setConfig("diff.marauder.textconv", "marauder diff", configSource);
+    await Git.setConfig("diff.marauder.cachetextconv", "true", configSource);
+    await Git.setConfig("diff.marauder.binary", "true", configSource);
     // TODO: add the config for merge, when the command is done
   }
 
