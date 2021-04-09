@@ -1,5 +1,4 @@
 import findProcess from "find-process";
-import { ArrayElement, UnwrapPromise } from "../types/unwrap";
 
 type Process = ArrayElement<UnwrapPromise<ReturnType<typeof findProcess>>>;
 

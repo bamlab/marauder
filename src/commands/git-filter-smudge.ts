@@ -1,7 +1,7 @@
 import { Command } from "@oclif/command";
 
-import { ConfigService } from "../services/config";
-import { Decoder } from "../transforms/decode";
+import { ConfigService } from "../io/config";
+import { Decoder } from "../security/transforms/decode";
 import { ProcessUtils } from "../utils/process";
 
 /**

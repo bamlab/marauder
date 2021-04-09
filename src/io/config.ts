@@ -1,5 +1,5 @@
-import { GitConfigSource } from "../git/commands/config";
-import { Git } from "../git/git";
+import { GitConfigSource } from "./git/commands/config";
+import { Git } from "./git/git";
 import { LockUtils } from "../utils/lock";
 
 const acquireGitConfigLock = (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {

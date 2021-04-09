@@ -1,10 +1,10 @@
 import { Command } from "@oclif/command";
 import CliUx from "cli-ux";
 
-import { Git } from "../git/git";
+import { Git } from "../io/git/git";
 
-import { ConfigService } from "../services/config";
-import { CryptoService } from "../services/crypto";
+import { ConfigService } from "../io/config";
+import { CryptoService } from "../security/crypto";
 import { ProcessUtils } from "../utils/process";
 
 /**

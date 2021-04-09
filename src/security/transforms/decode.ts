@@ -1,6 +1,5 @@
 import { Transform } from "stream";
-import { CryptoService } from "../services/crypto";
-import { TransformCallback } from "../types/stream";
+import { CryptoService } from "../crypto";
 
 export class Decoder extends Transform {
   constructor(private readonly secretKey: string) {
