@@ -8,6 +8,12 @@ export class Decoder extends Transform {
   }
 
   _transform(chunk: Buffer, encoding: BufferEncoding, callback: TransformCallback): void {
-    CryptoService.decipherSecret(this.secretKey, chunk.toString()).then((data) => callback(null, data));
+    const cipheredMessage = chunk.toString();
+    if (CryptoService.isEncrypted(cipheredMessage)) {
+      CryptoService.decipherSecret(this.secretKey, chunk.toString()).then((data) => callback(null, data));
+    } else {
+      // TODO: log something
+      callback(null, cipheredMessage);
+    }
   }
 }

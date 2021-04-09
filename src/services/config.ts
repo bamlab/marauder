@@ -51,7 +51,7 @@ export class ConfigService {
     // await Git.setConfig("filter.marauder.process", "marauder git-process", configSource);
     await Git.setConfig("filter.marauder.required", "true", configSource);
     // TODO: determine if "marauder git-diff-textconv" or "yarn marauder git-diff-textconv" based on how marauder is installed (if local, use local)
-    await Git.setConfig("diff.marauder.textconv", "marauder diff", configSource);
+    await Git.setConfig("diff.marauder.textconv", "marauder git-diff-textconv", configSource);
     await Git.setConfig("diff.marauder.cachetextconv", "true", configSource);
     await Git.setConfig("diff.marauder.binary", "true", configSource);
     // TODO: add the config for merge, when the command is done
