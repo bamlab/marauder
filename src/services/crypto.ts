@@ -2,6 +2,8 @@ import { CryptographyKey, SodiumPlus } from "sodium-plus";
 
 // TODO: add debug https://oclif.io/docs/debugging
 export class CryptoService {
+  private static magicHeader = Buffer.from("~(Marauder)~\n");
+
   static async generateRepositorySecretKey(): Promise<string> {
     const sodium = await SodiumPlus.auto();
     const key = await sodium.crypto_secretbox_keygen();
@@ -10,20 +12,33 @@ export class CryptoService {
 
   static async cipherSecret(storedSecretKey: string, message: string): Promise<string> {
     const sodium = await SodiumPlus.auto();
-    const plaintext = Buffer.from(message, "base64");
+    const plaintext = Buffer.from(message, "binary");
     const secretKey = CryptographyKey.from(storedSecretKey, "base64");
-    const nonce = await sodium.crypto_generichash(plaintext, secretKey, 24); // https://security.stackexchange.com/questions/238134/can-i-hmac-my-plaintext-for-use-as-a-nacl-secretbox-nonce
+    const nonce = await sodium.crypto_generichash(plaintext, secretKey, sodium.CRYPTO_SECRETBOX_NONCEBYTES); // https://security.stackexchange.com/questions/238134/can-i-hmac-my-plaintext-for-use-as-a-nacl-secretbox-nonce
     const ciphertext = await sodium.crypto_secretbox(plaintext, nonce, secretKey);
-    return Buffer.concat([nonce, ciphertext]).toString("binary");
+    return Buffer.concat([this.magicHeader, nonce, ciphertext]).toString("binary");
   }
 
   static async decipherSecret(storedSecretKey: string, cipheredMessage: string): Promise<string> {
     const sodium = await SodiumPlus.auto();
     const cipher = Buffer.from(cipheredMessage, "binary");
-    const nonce = cipher.slice(0, 24);
-    const ciphertext = cipher.slice(24, cipher.length);
+    const magicHeader = cipher.slice(0, this.magicHeader.length);
+    if (!magicHeader.equals(this.magicHeader)) {
+      throw new Error("Incorrect magic Header");
+    }
+    const nonce = cipher.slice(this.magicHeader.length, this.magicHeader.length + sodium.CRYPTO_SECRETBOX_NONCEBYTES);
+    const ciphertext = cipher.slice(this.magicHeader.length + sodium.CRYPTO_SECRETBOX_NONCEBYTES, cipher.length);
     const secretKey = CryptographyKey.from(storedSecretKey, "base64");
     const cleartext = await sodium.crypto_secretbox_open(ciphertext, nonce, secretKey);
-    return cleartext.toString("base64");
+    return cleartext.toString("binary");
+  }
+
+  static isEncrypted(cipheredMessage: string): boolean {
+    const cipher = Buffer.from(cipheredMessage, "binary");
+    const magicHeader = cipher.slice(0, this.magicHeader.length);
+    if (!magicHeader.equals(this.magicHeader)) {
+      return false;
+    }
+    return true;
   }
 }
