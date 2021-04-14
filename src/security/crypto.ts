@@ -12,11 +12,12 @@ export class CryptoService {
 
   static async cipherSecret(storedSecretKey: string, message: string): Promise<string> {
     const sodium = await SodiumPlus.auto();
-    const plaintext = Buffer.from(message, "binary");
+    // TODO: document why utf16le ?
+    const plaintext = Buffer.from(message, "utf16le");
     const secretKey = CryptographyKey.from(storedSecretKey, "base64");
     const nonce = await sodium.crypto_generichash(plaintext, secretKey, sodium.CRYPTO_SECRETBOX_NONCEBYTES); // https://security.stackexchange.com/questions/238134/can-i-hmac-my-plaintext-for-use-as-a-nacl-secretbox-nonce
     const ciphertext = await sodium.crypto_secretbox(plaintext, nonce, secretKey);
-    return Buffer.concat([this.magicHeader, nonce, ciphertext]).toString("binary");
+    return Buffer.concat([this.magicHeader, nonce, ciphertext]).toString("utf16le");
   }
 
   static async decipherSecret(storedSecretKey: string, cipheredMessage: string): Promise<string> {
@@ -30,11 +31,11 @@ export class CryptoService {
     const ciphertext = cipher.slice(this.magicHeader.length + sodium.CRYPTO_SECRETBOX_NONCEBYTES, cipher.length);
     const secretKey = CryptographyKey.from(storedSecretKey, "base64");
     const cleartext = await sodium.crypto_secretbox_open(ciphertext, nonce, secretKey);
-    return cleartext.toString("binary");
+    return cleartext.toString("utf16le");
   }
 
   static isEncrypted(cipheredMessage: string): boolean {
-    const cipher = Buffer.from(cipheredMessage, "binary");
+    const cipher = Buffer.from(cipheredMessage, "utf16le");
     const magicHeader = cipher.slice(0, this.magicHeader.length);
     if (!magicHeader.equals(this.magicHeader)) {
       return false;
