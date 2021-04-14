@@ -1,8 +1,25 @@
-import { SecureEngine } from "../security/interface";
+import { EncryptionEngine } from "../encryption/interface";
+import { UXEngine } from "../userInterface/interface";
 
 type Path = string;
 
-export interface IOEngine {
+/**
+ * Define the set of capabilities a repository must have.
+ *
+ * For now the unique implementation is Git, later on it can be also Mercurial, GridFS, ....
+ *
+ * @export
+ * @interface RepositoryEngine
+ */
+export interface RepositoryEngine {
+  /**
+   * uxEngine to provides log, or cli ux
+   *
+   * @type {UXEngine}
+   * @memberof RepositoryEngine
+   */
+  uxEngine: UXEngine;
+
   // #region engine
 
   /**
@@ -11,7 +28,7 @@ export interface IOEngine {
    * Eg: "Git" (later on "Hg", "S3", ect)
    *
    * @type {string}
-   * @memberof IOEngine
+   * @memberof RepositoryEngine
    */
   engineName: string;
 
@@ -20,7 +37,7 @@ export interface IOEngine {
    *
    * @param {string} name
    * @returns {boolean}
-   * @memberof IOEngine
+   * @memberof RepositoryEngine
    */
   isEngine(name: string): boolean;
 
@@ -36,7 +53,7 @@ export interface IOEngine {
    * Eg: a git backend must be inside a git directory
    *
    * @returns {Promise<boolean>}
-   * @memberof IOEngine
+   * @memberof RepositoryEngine
    */
   isHealthy(): Promise<boolean>;
 
@@ -46,7 +63,7 @@ export interface IOEngine {
    * For git that means repository is clean and pushed (?)
    *
    * @returns {Promise<void>}
-   * @memberof IOEngine
+   * @memberof RepositoryEngine
    */
   isClean(): Promise<void>;
 
@@ -62,7 +79,7 @@ export interface IOEngine {
    * Eg, git filter clean must be run by git, not directly
    *
    * @returns {Promise<boolean>}
-   * @memberof IOEngine
+   * @memberof RepositoryEngine
    */
   isProcessInternal(): Promise<boolean>;
 
@@ -70,7 +87,7 @@ export interface IOEngine {
    * Check the parent process and return if it is not launched by an internal command
    *
    * @returns {Promise<boolean>}
-   * @memberof IOEngine
+   * @memberof RepositoryEngine
    */
   isProcessExternal(): Promise<boolean>;
 
@@ -79,7 +96,7 @@ export interface IOEngine {
    * Also check if the process is interactive
    *
    * @returns {Promise<void>}
-   * @memberof IOEngine
+   * @memberof RepositoryEngine
    */
   isProcessExternalAndInteractive(): Promise<void>;
 
@@ -97,7 +114,7 @@ export interface IOEngine {
    *
    * @param {Path} filePath
    * @returns {Promise<string>}
-   * @memberof IOEngine
+   * @memberof RepositoryEngine
    */
   getRawContent(filePath: Path): Promise<string>;
 
@@ -109,7 +126,7 @@ export interface IOEngine {
    *
    * @param {Path} filePath
    * @returns {Promise<string>}
-   * @memberof IOEngine
+   * @memberof RepositoryEngine
    */
   getConvertedContent(filePath: Path): Promise<string>;
 
@@ -120,7 +137,7 @@ export interface IOEngine {
    *
    * @param {string} globPattern
    * @returns {Promise<string>}
-   * @memberof IOEngine
+   * @memberof RepositoryEngine
    */
   listFilePathsMatching(globPattern: string): Promise<Path[]>;
 
@@ -129,7 +146,7 @@ export interface IOEngine {
    *
    * @param {string} globPattern
    * @returns {Promise<void>}
-   * @memberof IOEngine
+   * @memberof RepositoryEngine
    */
   taintFiles(globPattern: string): Promise<void>;
 
@@ -138,24 +155,24 @@ export interface IOEngine {
    *
    * @param {string} globPattern
    * @returns {Promise<void>}
-   * @memberof IOEngine
+   * @memberof RepositoryEngine
    */
   untaintFiles(globPattern: string): Promise<void>;
 
   /**
-   * Given a glob, remove encryption on file matching the taint
+   * Given a glob, checks files taint status
    *
    * @param {string} globPattern
    * @returns {Promise<void>}
-   * @memberof IOEngine
+   * @memberof RepositoryEngine
    */
-  checkFiles(globPattern: string): Promise<{ path: Path; status: "cleartext" | "encrypted" }>;
+  checkFilesTaintStatus(globPattern: string): Promise<{ path: Path; status: "cleartext" | "encrypted" }>;
 
   /**
    * Transform a cleartext stream into an ciphertext stream
    *
    * @type {TransformStream}
-   * @memberof IOEngine
+   * @memberof RepositoryEngine
    */
   encryptStream: TransformStream;
 
@@ -163,7 +180,7 @@ export interface IOEngine {
    * Transform a ciphertext stream into an cleartext stream
    *
    * @type {TransformStream}
-   * @memberof IOEngine
+   * @memberof RepositoryEngine
    */
   decryptStream: TransformStream;
 
@@ -175,7 +192,7 @@ export interface IOEngine {
    * Checks if marauder is initialized in the current repository
    *
    * @returns {Promise<string>}
-   * @memberof IOEngine
+   * @memberof RepositoryEngine
    */
   isInitialized(): Promise<string>;
 
@@ -183,9 +200,9 @@ export interface IOEngine {
    * Checks if marauder is initialized in the current repository
    *
    * @returns {Promise<string>}
-   * @memberof IOEngine
+   * @memberof RepositoryEngine
    */
-  initialized(secureEngine: SecureEngine): Promise<string>;
+  initialized(secureEngine: EncryptionEngine): Promise<string>;
 
   // #endregion config
 
@@ -195,23 +212,15 @@ export interface IOEngine {
    * Check if the repository has a secret key configured
    *
    * @returns {Promise<boolean>}
-   * @memberof IOEngine
+   * @memberof RepositoryEngine
    */
   hasSecretKey(): Promise<boolean>;
-
-  /**
-   * Check if the repository has a secret key configured
-   *
-   * @returns {Promise<boolean>}
-   * @memberof IOEngine
-   */
-  getSecretKey(): Promise<Buffer>;
 
   /**
    * Configure the repository secret key
    *
    * @returns {Promise<boolean>}
-   * @memberof IOEngine
+   * @memberof RepositoryEngine
    */
   setSecretKey(secretKey: Buffer): Promise<void>;
 
