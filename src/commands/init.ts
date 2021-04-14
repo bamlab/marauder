@@ -1,6 +1,6 @@
 import { Command, flags } from "@oclif/command";
 
-import { ConfigService } from "../io/config";
+import { ConfigService } from "../old/config";
 
 // TODO: document this
 // TODO: add debug https://oclif.io/docs/debugging

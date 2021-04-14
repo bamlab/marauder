@@ -1,6 +1,6 @@
 import { Command } from "@oclif/command";
 
-import { Git } from "../io/git/git";
+import { Git } from "../old/git/git";
 
 /**
  * Given a path, show the content as stored by Git

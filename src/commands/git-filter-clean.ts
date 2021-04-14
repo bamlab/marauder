@@ -1,8 +1,8 @@
 import { Command } from "@oclif/command";
 
-import { ConfigService } from "../io/config";
-import { Encoder } from "../security/transforms/encode";
-import { ProcessUtils } from "../utils/process";
+import { ConfigService } from "../old/config";
+import { Encoder } from "../old/security/transforms/encode";
+import { ProcessUtils } from "../old/utils/process";
 
 /**
  * (Used by git, not for direct usage) Encode file

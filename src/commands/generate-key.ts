@@ -1,11 +1,11 @@
 import { Command } from "@oclif/command";
 import CliUx from "cli-ux";
 
-import { Git } from "../io/git/git";
+import { Git } from "../old/git/git";
 
-import { ConfigService } from "../io/config";
-import { CryptoService } from "../security/crypto";
-import { ProcessUtils } from "../utils/process";
+import { ConfigService } from "../old/config";
+import { CryptoService } from "../old/security/crypto";
+import { ProcessUtils } from "../old/utils/process";
 
 /**
  * Generate the repository secret
